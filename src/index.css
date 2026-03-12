@@ -1,0 +1,177 @@
+.icon-box {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-10px);
+}
+
+.trust-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
+}
+
+.brand-box {
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.brand-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding-top: 100px;
+}
+
+.highlight-text {
+  color: #00e0ff;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  transform: rotate(-2deg);
+  transition: all 0.4s ease;
+}
+
+.dashboard-card:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.summary-box {
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+
+.summary-box.income {
+  background: linear-gradient(45deg, #00b09b, #96c93d);
+}
+
+.summary-box.expense {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+.auth-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c92d2);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  perspective: 1000px;
+}
+
+/* Animated Background */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.auth-container {
+  transform-style: preserve-3d;
+}
+
+.auth-card {
+  width: 380px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+  transition: transform 0.6s ease;
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+.auth-card:hover {
+  transform: rotateY(10deg) rotateX(10deg);
+}
+
+/* Floating Animation */
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.auth-title {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.auth-card input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+.auth-card input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  transform: scale(1.05);
+}
+
+.switch-text {
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+}
+
+.switch-text span {
+  color: #00c6ff;
+  cursor: pointer;
+  font-weight: bold;
+}
