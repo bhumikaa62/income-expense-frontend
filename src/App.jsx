@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./component/NavBar";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
@@ -6,11 +6,17 @@ import Auth from "./pages/Auth";
 import Income from "./component/Income";
 import Expense from "./component/Expense";
 import ProtectedRoute from "./component/ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
-function App() {
+function MainApp() {
+  const location = useLocation();
+
+  // ✅ admin routes pe navbar hide
+  const hideNavbar = location.pathname.startsWith("/admin");
+
   return (
-    <Router>
-      <NavBar />
+    <>
+      {!hideNavbar && <NavBar />}
 
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -42,7 +48,24 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute adminOnly={true}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <MainApp />
     </Router>
   );
 }

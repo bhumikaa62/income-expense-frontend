@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 const NavBar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role"); // ✅ ADD
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear(); // ✅ better
     navigate("/auth");
   };
 
@@ -13,7 +14,6 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient shadow-lg py-3">
       <div className="container">
 
-        {/* Logo */}
         <Link className="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" to="/">
           <span className="bg-warning text-dark px-2 py-1 rounded-3 fw-bold">
             ET
@@ -21,62 +21,59 @@ const NavBar = () => {
           ExpenseTracker
         </Link>
 
-        {/* Mobile Toggle */}
-        <button
-          className="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* Nav Links */}
-        <div className="collapse navbar-collapse" id="navbarContent">
+        <div className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-3">
 
             {!token ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link fw-semibold" to="/">
-                    Home
-                  </Link>
+                  <Link className="nav-link" to="/">Home</Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link
-                    className="btn btn-warning rounded-pill px-4 fw-semibold shadow-sm"
-                    to="/auth"
-                  >
+                  <Link className="btn btn-warning" to="/auth">
                     Login / Register
                   </Link>
                 </li>
               </>
-            ) : (
+            ) : role === "admin" ? (
+              // 🔥 ADMIN NAVBAR
               <>
                 <li className="nav-item">
-                  <Link className="nav-link fw-semibold" to="/dashboard">
-                    Dashboard
-                  </Link>
+                  <Link className="nav-link" to="/admin/users">Users</Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link fw-semibold" to="/income">
-                    Income
-                  </Link>
+                  <Link className="nav-link" to="/admin/income">Income</Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link fw-semibold" to="/expense">
-                    Expense
-                  </Link>
+                  <Link className="nav-link" to="/admin/expense">Expense</Link>
                 </li>
 
                 <li className="nav-item">
-                  <button
-                    className="btn btn-danger rounded-pill px-4 fw-semibold shadow-sm"
-                    onClick={handleLogout}
-                  >
+                  <button className="btn btn-danger" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              // 🔥 USER NAVBAR
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/income">Income</Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/expense">Expense</Link>
+                </li>
+
+                <li className="nav-item">
+                  <button className="btn btn-danger" onClick={handleLogout}>
                     Logout
                   </button>
                 </li>
@@ -85,10 +82,8 @@ const NavBar = () => {
 
           </ul>
         </div>
-
       </div>
     </nav>
   );
 };
-
 export default NavBar;

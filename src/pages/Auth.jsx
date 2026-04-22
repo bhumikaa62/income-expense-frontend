@@ -8,7 +8,7 @@ const Auth = () => {
   const navigate = useNavigate();
 
 
-
+  
  const register = async(evt)=>{
   evt.preventDefault()
   const ob = {
@@ -58,14 +58,19 @@ const Auth = () => {
   const res = await response.json();
 
  if (res.status) {
-  // 🔥 token aur userId dono save karna
   localStorage.setItem("token", res.data.token);
   localStorage.setItem("userId", res.data.userId);
 
+  localStorage.setItem("role", res.data.role);
+
   toast.success(res.msg);
-  navigate("/dashboard");
-} else {
-  toast.error(res.msg);
+
+  // ✅ ADMIN REDIRECT
+  if (res.data.role === "admin") {
+    navigate("/admin/users");
+  } else {
+    navigate("/dashboard");
+  }
 }
   }
 
